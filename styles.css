@@ -1,6 +1,12 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
+    background-color: #f5f5f5;
+    margin: 0;
+}
+
+h1 {
+    margin-top: 30px;
 }
 
 .products {
@@ -11,9 +17,24 @@ body {
 }
 
 .product-card {
-    border: 1px solid #ccc;
+    background-color: white;
+    border-radius: 8px;
     padding: 20px;
     width: 200px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px 15px;
+    border: none;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #333;
 }
 
 .cart {
