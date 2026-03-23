@@ -14,24 +14,27 @@
 <h2>Headphones</h2>
 <p>$199</p>
 <div class="buttons">
-<button class="add-btn" data-price="199">Add to Cart</button>
-<button class="remove-btn" data-price="199">Remove</button>
+<button class="add-btn" data-price="199" data-product="headphones">+</button>
+<span id="headphones-qty">0</span>
+<button class="remove-btn" data-price="199" data-product="headphones">-</button>
 </div>
 </div>
 <div class="product-card">
 <h2>Keyboard</h2>
 <p>$99</p>
 <div class="buttons">
-<button class="add-btn" data-price="99">Add to Cart</button>
-<button class="remove-btn" data-price="99">Remove</button>
+<button class="add-btn" data-price="99" data-product="keyboard">+</button>
+<span id="keyboard-qty">0</span>
+<button class="remove-btn" data-price="99" data-product="keyboard">-</button>
 </div>
 </div>
 <div class="product-card">
 <h2>Mouse</h2>
 <p>$49</p>
 <div class="buttons">
-<button class="add-btn" data-price="49">Add to Cart</button>
-<button class="remove-btn" data-price="49">Remove</button>
+<button class="add-btn" data-price="49" data-product="mouse">+</button>
+<span id="mouse-qty">0</span>
+<button class="remove-btn" data-price="49" data-product="mouse">-</button>
 </div>
 </div>
 </section>
@@ -39,6 +42,7 @@
 <h2>Cart</h2>
 <p id="cart-count">Items: 0</p>
 <p id="cart-total">Total: $0</p>
+<button id="clear-cart">Clear Cart</button>
 </section>
 </main>
 <script src="script.js"></script>
