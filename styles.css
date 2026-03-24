@@ -7,6 +7,7 @@ body {
 
 h1 {
     margin-top: 30px;
+    margin-bottom: 10px;
 }
 
 .products {
@@ -19,7 +20,7 @@ h1 {
 .product-card {
     background-color: white;
     border-radius: 8px;
-    padding: 20px;
+    padding: 25px;
     width: 200px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
@@ -35,19 +36,56 @@ button {
 
 button:hover {
     background-color: #333;
+    transform: scale(1.05);
 }
 
 .buttons {
     display: flex;
+    align-items: center;
     justify-content: center;
-    gap: 5px;
+    gap: 6px;
 }
 
 .buttons button {
-    width: 100px;
-    white-space: nowrap;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    font-size: 14px;
+    padding: 0;
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttons span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 26px;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1;
 }
 
 .cart {
     margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.cart h2 {
+    margin-bottom: 5px;
+}
+
+.cart p {
+    margin: 2px 0;
+}
+
+.cart-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
 }
