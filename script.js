@@ -1,9 +1,19 @@
-let headphonesQty = Number(localStorage.getItem("headphonesQty")) || 0;
-let keyboardQty = Number(localStorage.getItem("keyboardQty")) || 0;
-let mouseQty = Number(localStorage.getItem("mouseQty")) || 0;
-let total = Number(localStorage.getItem("total")) || 0;
+let products = {
+    headphones: {
+        qty: Number(localStorage.getItem("headphonesQty")) || 0,
+        price: 199
+    },
+    keyboard: {
+        qty: Number(localStorage.getItem("keyboardQty")) || 0,
+        price: 99
+    },
+    mouse: {
+        qty: Number(localStorage.getItem("mouseQty")) || 0,
+        price: 49
+    }
+};
 
-let count = headphonesQty + keyboardQty + mouseQty;
+let total = Number(localStorage.getItem("total")) || 0;
 
 const addButtons = document.querySelectorAll(".add-btn");
 const removeButtons = document.querySelectorAll(".remove-btn");
@@ -19,20 +29,23 @@ const clearCartBtn = document.getElementById("clear-cart");
 const checkoutBtn = document.getElementById("checkout-btn");
 
 function updateUI() {
-    count = headphonesQty + keyboardQty + mouseQty;
+    const count =
+        products.headphones.qty +
+        products.keyboard.qty +
+        products.mouse.qty;
 
     cartCount.textContent = "Items: " + count;
     cartTotal.textContent = "Total: $" + total;
 
-    headphonesQtyEl.textContent = headphonesQty;
-    keyboardQtyEl.textContent = keyboardQty;
-    mouseQtyEl.textContent = mouseQty;
+    headphonesQtyEl.textContent = products.headphones.qty;
+    keyboardQtyEl.textContent = products.keyboard.qty;
+    mouseQtyEl.textContent = products.mouse.qty;
 }
 
 function saveToStorage() {
-    localStorage.setItem("headphonesQty", headphonesQty);
-    localStorage.setItem("keyboardQty", keyboardQty);
-    localStorage.setItem("mouseQty", mouseQty);
+    localStorage.setItem("headphonesQty", products.headphones.qty);
+    localStorage.setItem("keyboardQty", products.keyboard.qty);
+    localStorage.setItem("mouseQty", products.mouse.qty);
     localStorage.setItem("total", total);
 }
 
@@ -40,14 +53,10 @@ updateUI();
 
 addButtons.forEach(button => {
     button.addEventListener("click", () => {
-        const price = Number(button.dataset.price);
         const product = button.dataset.product;
 
-        if (product === "headphones") headphonesQty++;
-        if (product === "keyboard") keyboardQty++;
-        if (product === "mouse") mouseQty++;
-
-        total += price;
+        products[product].qty++;
+        total += products[product].price;
 
         updateUI();
         saveToStorage();
@@ -56,22 +65,11 @@ addButtons.forEach(button => {
 
 removeButtons.forEach(button => {
     button.addEventListener("click", () => {
-        const price = Number(button.dataset.price);
         const product = button.dataset.product;
 
-        if (product === "headphones" && headphonesQty > 0) {
-            headphonesQty--;
-            total -= price;
-        }
-
-        if (product === "keyboard" && keyboardQty > 0) {
-            keyboardQty--;
-            total -= price;
-        }
-
-        if (product === "mouse" && mouseQty > 0) {
-            mouseQty--;
-            total -= price;
+        if (products[product].qty > 0) {
+            products[product].qty--;
+            total -= products[product].price;
         }
 
         updateUI();
@@ -80,9 +78,9 @@ removeButtons.forEach(button => {
 });
 
 clearCartBtn.addEventListener("click", () => {
-    headphonesQty = 0;
-    keyboardQty = 0;
-    mouseQty = 0;
+    products.headphones.qty = 0;
+    products.keyboard.qty = 0;
+    products.mouse.qty = 0;
     total = 0;
 
     updateUI();
@@ -90,6 +88,11 @@ clearCartBtn.addEventListener("click", () => {
 });
 
 checkoutBtn.addEventListener("click", () => {
+    const count =
+        products.headphones.qty +
+        products.keyboard.qty +
+        products.mouse.qty;
+
     if (count === 0) {
         alert("Cart is empty");
         return;
