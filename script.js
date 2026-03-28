@@ -29,10 +29,11 @@ const clearCartBtn = document.getElementById("clear-cart");
 const checkoutBtn = document.getElementById("checkout-btn");
 
 function updateUI() {
-    const count =
-        products.headphones.qty +
-        products.keyboard.qty +
-        products.mouse.qty;
+        let count = 0;
+        
+        for (let item in products) {
+            count += products[item].qty;
+}
 
     cartCount.textContent = "Items: " + count;
     cartTotal.textContent = "Total: $" + total;
@@ -40,6 +41,12 @@ function updateUI() {
     headphonesQtyEl.textContent = products.headphones.qty;
     keyboardQtyEl.textContent = products.keyboard.qty;
     mouseQtyEl.textContent = products.mouse.qty;
+
+    if (count === 0) {
+        checkoutBtn.disabled = true;
+    } else {
+        checkoutBtn.disabled = false;
+}
 }
 
 function saveToStorage() {
@@ -88,10 +95,11 @@ clearCartBtn.addEventListener("click", () => {
 });
 
 checkoutBtn.addEventListener("click", () => {
-    const count =
-        products.headphones.qty +
-        products.keyboard.qty +
-        products.mouse.qty;
+    let count = 0;
+    
+    for (let item in products) {
+        count += products[item].qty;
+}
 
     if (count === 0) {
         alert("Cart is empty");
