@@ -47,6 +47,17 @@ function updateUI() {
     } else {
         checkoutBtn.disabled = false;
 }
+
+removeButtons.forEach(button => {
+    const product = button.dataset.product;
+
+    if (products[product].qty === 0) {
+        button.disabled = true;
+    } else {
+        button.disabled = false;
+    }
+});
+
 }
 
 function saveToStorage() {
@@ -85,9 +96,10 @@ removeButtons.forEach(button => {
 });
 
 clearCartBtn.addEventListener("click", () => {
-    products.headphones.qty = 0;
-    products.keyboard.qty = 0;
-    products.mouse.qty = 0;
+    for (let item in products) {
+        products[item].qty = 0;
+    }
+
     total = 0;
 
     updateUI();
